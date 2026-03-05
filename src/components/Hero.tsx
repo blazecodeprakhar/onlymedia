@@ -36,11 +36,7 @@ export default function Hero() {
                     animate="show"
                     className="max-w-5xl"
                 >
-                    <motion.div variants={item} className="mb-6">
-                        <span className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium tracking-widest uppercase text-white inline-block border border-white/20">
-                            Media Solutions Company
-                        </span>
-                    </motion.div>
+
 
                     <motion.h1
                         variants={item}
