@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import TopBar from './components/TopBar';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -9,6 +8,7 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Blogs from './pages/Blogs';
 import Contact from './pages/Contact';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,8 +23,8 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="min-h-screen font-sans bg-light text-dark selection:bg-primary selection:text-white">
-        <TopBar />
         <Navbar isScrolled={isScrolled} />
 
         <Routes>

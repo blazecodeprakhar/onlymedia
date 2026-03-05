@@ -31,7 +31,7 @@ export default function Navbar({ isScrolled }: NavbarProps) {
                 style={{ top: isScrolled ? 0 : 'auto', position: isScrolled ? 'fixed' : 'absolute' }}
             >
                 <div className="container mx-auto px-6 flex justify-between items-center">
-                    <Link to="/" className="flex items-center">
+                    <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center">
                         <img src="https://onlymedia.in/wp-content/uploads/2025/07/OM1Final-1.png" alt="OnlyMedia Logo" className="h-10 md:h-12 object-contain" />
                     </Link>
 
@@ -41,13 +41,14 @@ export default function Navbar({ isScrolled }: NavbarProps) {
                             <Link
                                 key={link.name}
                                 to={link.href}
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                                 className="font-medium text-sm tracking-wide uppercase hover:text-primary transition-colors relative group"
                             >
                                 {link.name}
                                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
                             </Link>
                         ))}
-                        <Link to="/contact" className="bg-primary hover:bg-white hover:text-dark text-white px-6 py-2.5 rounded-full font-medium transition-colors flex items-center gap-2">
+                        <Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="bg-primary hover:bg-white hover:text-dark text-white px-6 py-2.5 rounded-full font-medium transition-colors flex items-center gap-2">
                             Get in Touch <ArrowRight size={16} />
                         </Link>
                     </nav>
@@ -70,11 +71,22 @@ export default function Navbar({ isScrolled }: NavbarProps) {
                     >
                         <nav className="flex flex-col items-center gap-8 text-2xl font-display font-bold w-full">
                             {navLinks.map((link) => (
-                                <Link key={link.name} to={link.href} onClick={() => setIsOpen(false)} className="border-b border-white/10 w-full text-center pb-4 hover:text-primary transition-colors">
+                                <Link
+                                    key={link.name}
+                                    to={link.href}
+                                    onClick={() => {
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                        setIsOpen(false);
+                                    }}
+                                    className="border-b border-white/10 w-full text-center pb-4 hover:text-primary transition-colors"
+                                >
                                     {link.name}
                                 </Link>
                             ))}
-                            <Link to="/contact" onClick={() => setIsOpen(false)} className="w-full bg-primary py-4 rounded-full mt-4 flex justify-center items-center gap-2">
+                            <Link to="/contact" onClick={() => {
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                                setIsOpen(false);
+                            }} className="w-full bg-primary py-4 rounded-full mt-4 flex justify-center items-center gap-2">
                                 Get in Touch <ArrowRight size={20} />
                             </Link>
                         </nav>

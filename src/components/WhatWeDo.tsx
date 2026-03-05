@@ -62,10 +62,7 @@ export default function WhatWeDo() {
         <section id="services" className="py-24 md:py-32 bg-light">
             <div className="container mx-auto px-6">
                 <div className="text-center max-w-3xl mx-auto mb-16 md:mb-24">
-                    <h2 className="text-5xl md:text-6xl font-display font-black tracking-tight mb-8">WHAT WE DO</h2>
-                    <p className="text-xl text-dark/70 font-light leading-relaxed">
-                        We help brands navigate today's complex media landscape with solutions that combine <span className="text-primary font-medium">precision, creativity and performance</span>. From planning to execution, our work is built to deliver impact at every stage of the customer journey.
-                    </p>
+                    <h2 className="text-5xl md:text-6xl font-display font-black tracking-tight drop-shadow-sm text-dark">CORE CAPABILITIES</h2>
                 </div>
 
                 <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
@@ -79,15 +76,18 @@ export default function WhatWeDo() {
                                 <button
                                     key={service.id}
                                     onClick={() => setActiveTab(service.id)}
-                                    className={`text-left p-6 md:p-8 rounded-3xl transition-all duration-300 flex items-center gap-6 group ${isActive
-                                            ? 'bg-dark text-white shadow-2xl scale-105 transform z-10'
-                                            : 'bg-white hover:bg-gray-50 text-dark/60 hover:text-dark'
+                                    className={`relative text-left p-6 md:p-8 rounded-3xl transition-all duration-500 flex items-center gap-6 group overflow-hidden ${isActive
+                                        ? 'bg-dark text-white shadow-[0_20px_60px_rgba(0,0,0,0.3)] scale-[1.02] transform z-10'
+                                        : 'bg-white hover:bg-white hover:shadow-xl text-dark/60 hover:text-dark hover:scale-[1.01] border border-gray-100'
                                         }`}
                                 >
-                                    <div className={`p-4 rounded-2xl ${isActive ? 'bg-primary/20 text-primary' : 'bg-gray-100 text-dark/40 group-hover:text-primary'}`}>
-                                        <Icon size={32} strokeWidth={1.5} />
+                                    {/* Active Left Indicator Bar */}
+                                    <div className={`absolute left-0 top-0 bottom-0 w-1.5 transition-all duration-500 rounded-l-3xl ${isActive ? 'bg-primary' : 'bg-transparent group-hover:bg-primary/30'}`}></div>
+
+                                    <div className={`p-4 rounded-2xl relative z-10 transition-colors duration-500 ${isActive ? 'bg-primary/20 text-primary' : 'bg-gray-100 text-dark/40 group-hover:text-primary group-hover:bg-primary/10'}`}>
+                                        <Icon size={32} strokeWidth={isActive ? 2 : 1.5} className={`transition-transform duration-500 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} />
                                     </div>
-                                    <span className={`text-xl md:text-2xl font-bold font-display ${isActive ? 'text-white' : ''}`}>
+                                    <span className={`text-xl md:text-2xl font-bold font-display relative z-10 transition-colors duration-500 ${isActive ? 'text-white' : ''}`}>
                                         {service.title}
                                     </span>
                                 </button>
@@ -106,29 +106,38 @@ export default function WhatWeDo() {
                                 transition={{ duration: 0.4, ease: "easeOut" }}
                                 className="bg-white p-8 md:p-12 rounded-[2rem] shadow-xl border border-gray-100 h-full flex flex-col justify-center"
                             >
-                                <h3 className="text-3xl font-display font-bold mb-6 flex items-center gap-4 text-dark">
+                                <h3 className="text-3xl font-display font-bold mb-6 flex items-center gap-4 text-dark drop-shadow-sm">
                                     {currentService.title}
                                 </h3>
-                                <p className="text-xl text-dark/70 font-light mb-12 leading-relaxed pb-8 border-b border-gray-100">
+                                <p className="text-xl md:text-2xl text-dark/70 font-light mb-12 leading-relaxed pb-8 border-b border-gray-100">
                                     {currentService.desc}
                                 </p>
 
-                                <h4 className="text-sm font-bold uppercase tracking-widest text-primary mb-8 px-4 py-2 bg-primary/10 inline-block rounded-full self-start">Key Focus Areas</h4>
+                                <motion.h4
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: 0.2 }}
+                                    className="text-xs font-bold uppercase tracking-widest text-primary mb-8 px-4 py-2 bg-primary/10 inline-block rounded-full self-start shadow-sm"
+                                >
+                                    Key Focus Areas
+                                </motion.h4>
 
                                 <div className="grid md:grid-cols-2 gap-8 md:gap-12">
                                     {currentService.points.map((point, idx) => (
                                         <motion.div
                                             key={idx}
-                                            initial={{ opacity: 0, scale: 0.9 }}
-                                            animate={{ opacity: 1, scale: 1 }}
-                                            transition={{ delay: idx * 0.1 }}
-                                            className="group"
+                                            initial={{ opacity: 0, y: 30 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: 0.3 + (idx * 0.1), type: "spring", stiffness: 100 }}
+                                            className="group cursor-default"
                                         >
-                                            <h5 className="text-xl font-bold mb-3 flex items-start gap-2 text-dark font-display group-hover:text-primary transition-colors">
-                                                <ArrowRight size={20} className="mt-1 flex-shrink-0 text-primary" />
+                                            <h5 className="text-xl font-bold mb-3 flex items-start gap-3 text-dark font-display group-hover:text-primary transition-colors duration-300">
+                                                <div className="mt-1 flex-shrink-0 bg-gray-100 group-hover:bg-primary/10 p-1.5 rounded-full transition-colors duration-300">
+                                                    <ArrowRight size={16} strokeWidth={3} className="text-dark/40 group-hover:text-primary transition-colors duration-300" />
+                                                </div>
                                                 {point.title}
                                             </h5>
-                                            <p className="text-dark/60 leading-relaxed font-light pl-7">
+                                            <p className="text-dark/60 leading-relaxed font-light pl-11 group-hover:text-dark/80 transition-colors duration-300">
                                                 {point.desc}
                                             </p>
                                         </motion.div>

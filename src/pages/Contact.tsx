@@ -1,5 +1,4 @@
-import React from 'react';
-import CircularCTA from '../components/CircularCTA';
+
 
 export default function Contact() {
     return (
@@ -31,7 +30,6 @@ export default function Contact() {
                     </div>
                 </div>
             </div>
-            <CircularCTA />
         </main>
     );
 }

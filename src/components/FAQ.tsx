@@ -21,19 +21,30 @@ const FAQS = [
     }
 ];
 
-export default function FAQ() {
+interface FAQItem {
+    question: string;
+    answer: string;
+}
+
+interface FAQProps {
+    data?: FAQItem[];
+    title?: string;
+    subtitle?: string;
+}
+
+export default function FAQ({ data = FAQS, title = "FAQs", subtitle = "Support & Queries" }: FAQProps) {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
         <section className="py-24 md:py-32 bg-white text-dark">
             <div className="container mx-auto px-6 max-w-4xl">
                 <div className="text-center mb-16 md:mb-24">
-                    <h4 className="text-primary font-bold uppercase tracking-widest text-sm mb-4">Support & Queries</h4>
-                    <h2 className="text-4xl md:text-5xl font-display font-black tracking-tight mb-8 text-dark">FAQs</h2>
+                    {subtitle && <h4 className="text-primary font-bold uppercase tracking-widest text-sm mb-4">{subtitle}</h4>}
+                    <h2 className="text-4xl md:text-5xl font-display font-black tracking-tight mb-8 text-dark">{title}</h2>
                 </div>
 
                 <div className="space-y-4">
-                    {FAQS.map((faq, index) => {
+                    {data.map((faq, index) => {
                         const isOpen = openIndex === index;
                         return (
                             <motion.div
