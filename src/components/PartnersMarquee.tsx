@@ -28,7 +28,7 @@ export default function PartnersMarquee() {
                             key={index}
                             className="px-12 md:px-24 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 transform hover:scale-110"
                         >
-                            <img src={partner.img} alt={partner.name} className="h-12 md:h-16 object-contain" />
+                            <img src={partner.img} alt={partner.name} className="h-12 md:h-16 w-auto max-w-none object-contain" />
                         </div>
                     ))}
                 </div>
