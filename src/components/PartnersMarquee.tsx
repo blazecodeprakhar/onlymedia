@@ -1,6 +1,11 @@
+import { motion } from 'framer-motion';
 
 const PARTNERS = [
-    "Meta", "LinkedIn", "YouTube", "Pinterest", "Display & Video 360", "Google Ads", "TikTok", "X"
+    { name: "Meta", img: "https://onlymedia.in/wp-content/uploads/2025/08/Meta.png" },
+    { name: "LinkedIn", img: "https://onlymedia.in/wp-content/uploads/2025/08/LInked-In.png" },
+    { name: "YouTube", img: "https://onlymedia.in/wp-content/uploads/2025/08/Youtube.png" },
+    { name: "Pinterest", img: "https://onlymedia.in/wp-content/uploads/2025/08/Pinterest-01.png" },
+    { name: "Display & Video 360", img: "https://onlymedia.in/wp-content/uploads/2025/08/Video-360.png" }
 ];
 
 export default function PartnersMarquee() {
@@ -14,16 +19,16 @@ export default function PartnersMarquee() {
             </div>
 
             <div className="relative w-full overflow-hidden flex pt-8 pb-10">
-                <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-dark to-transparent z-10"></div>
-                <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-dark to-transparent z-10"></div>
+                <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-dark to-transparent z-10 pointer-events-none"></div>
+                <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-dark to-transparent z-10 pointer-events-none"></div>
 
-                <div className="flex animate-marquee whitespace-nowrap">
-                    {[...PARTNERS, ...PARTNERS].map((partner, index) => (
+                <div className="flex animate-marquee whitespace-nowrap items-center">
+                    {[...PARTNERS, ...PARTNERS, ...PARTNERS].map((partner, index) => (
                         <div
                             key={index}
-                            className="px-12 md:px-24 flex items-center justify-center text-3xl md:text-5xl font-display font-bold text-white/30 hover:text-white/80 transition-colors duration-300 pointer-events-none"
+                            className="px-12 md:px-24 flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 transform hover:scale-110"
                         >
-                            {partner}
+                            <img src={partner.img} alt={partner.name} className="h-12 md:h-16 object-contain" />
                         </div>
                     ))}
                 </div>
@@ -31,4 +36,3 @@ export default function PartnersMarquee() {
         </section>
     );
 }
-

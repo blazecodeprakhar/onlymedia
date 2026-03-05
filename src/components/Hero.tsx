@@ -48,7 +48,7 @@ export default function Hero() {
                     >
                         Targeted <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-300">Media</span> <br />
-                        <span className="text-white text-stroke-1 text-fill-transparent lg:text-[6rem]">Measurable Growth</span>
+                        <span className="text-white/20 text-stroke-primary font-black lg:text-[6rem]">Measurable Growth</span>
                     </motion.h1>
 
                     <motion.p

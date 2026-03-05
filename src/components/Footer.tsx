@@ -1,14 +1,15 @@
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
     return (
-        <footer className="bg-dark text-white pt-24 pb-8 border-t border-white/5">
+        <footer className="bg-dark text-white pt-24 pb-8 border-t border-white/5 relative z-10">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col md:flex-row justify-between items-start gap-16 md:gap-8 border-b border-white/10 pb-16">
 
                     <div className="md:w-1/3">
-                        <a href="#" className="font-display font-black text-3xl tracking-tighter mb-8 inline-block block">
-                            ONLYMEDIA<span className="text-primary">.</span>
-                        </a>
+                        <Link to="/" className="mb-8 inline-block block">
+                            <img src="https://onlymedia.in/wp-content/uploads/2025/07/OM1Final-1.png" alt="OnlyMedia Logo" className="h-10 md:h-12 object-contain filter brightness-0 invert" />
+                        </Link>
                         <p className="text-white/60 font-light leading-relaxed max-w-sm">
                             OnlyMedia creates data-driven media solutions that help brands reach the right audience and grow.
                         </p>
@@ -18,10 +19,10 @@ export default function Footer() {
                         <div>
                             <h4 className="font-display font-bold text-lg mb-6 tracking-wide">Quick Links</h4>
                             <ul className="space-y-4">
-                                <li><a href="#" className="text-white/60 hover:text-white transition-colors font-light">Home</a></li>
-                                <li><a href="#about" className="text-white/60 hover:text-white transition-colors font-light">About</a></li>
-                                <li><a href="#services" className="text-white/60 hover:text-white transition-colors font-light">Services</a></li>
-                                <li><a href="#blogs" className="text-white/60 hover:text-white transition-colors font-light">Blogs</a></li>
+                                <li><Link to="/" className="text-white/60 hover:text-white transition-colors font-light">Home</Link></li>
+                                <li><Link to="/about" className="text-white/60 hover:text-white transition-colors font-light">About</Link></li>
+                                <li><Link to="/services" className="text-white/60 hover:text-white transition-colors font-light">Services</Link></li>
+                                <li><Link to="/blogs" className="text-white/60 hover:text-white transition-colors font-light">Blogs</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -50,12 +51,11 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row justify-between items-center pt-8 text-white/40 text-sm font-light">
                     <p>Copyright &copy; 2026 - Designed & Developed by Omniraa Media.</p>
                     <div className="flex gap-6 mt-4 md:mt-0">
-                        <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-                        <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+                        <Link to="#" className="hover:text-white transition-colors">Privacy Policy</Link>
+                        <Link to="#" className="hover:text-white transition-colors">Terms of Service</Link>
                     </div>
                 </div>
             </div>
         </footer>
     );
 }
-

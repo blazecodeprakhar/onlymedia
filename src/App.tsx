@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import TopBar from './components/TopBar';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import WhoWeAre from './components/WhoWeAre';
-import PartnersMarquee from './components/PartnersMarquee';
-import WhatWeDo from './components/WhatWeDo';
-import WhyChooseUs from './components/WhyChooseUs';
-import CircularCTA from './components/CircularCTA';
-import FAQ from './components/FAQ';
 import Footer from './components/Footer';
+
+import Home from './pages/Home';
+import About from './pages/About';
+import Services from './pages/Services';
+import Blogs from './pages/Blogs';
+import Contact from './pages/Contact';
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,24 +22,23 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen font-sans bg-light text-dark selection:bg-primary selection:text-white">
-      <TopBar />
-      <Navbar isScrolled={isScrolled} />
+    <BrowserRouter>
+      <div className="min-h-screen font-sans bg-light text-dark selection:bg-primary selection:text-white">
+        <TopBar />
+        <Navbar isScrolled={isScrolled} />
 
-      <main>
-        <Hero />
-        <WhoWeAre />
-        <PartnersMarquee />
-        <WhatWeDo />
-        <WhyChooseUs />
-        <FAQ />
-      </main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
 
-      <Footer />
-      <CircularCTA />
-    </div>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
 export default App;
-

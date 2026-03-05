@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
     isScrolled: boolean;
@@ -8,40 +9,47 @@ interface NavbarProps {
 
 export default function Navbar({ isScrolled }: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation();
+    const isHomePage = location.pathname === '/';
 
     const navLinks = [
-        { name: 'Home', href: '#' },
-        { name: 'About', href: '#about' },
-        { name: 'Services', href: '#services' },
-        { name: 'Blogs', href: '#blogs' },
+        { name: 'Home', href: '/' },
+        { name: 'About', href: '/about' },
+        { name: 'Services', href: '/services' },
+        { name: 'Blogs', href: '/blogs' },
+        { name: 'Contact', href: '/contact' },
     ];
+
+    const navClass = isScrolled || !isHomePage
+        ? 'bg-dark/90 backdrop-blur-md py-4 shadow-lg text-white'
+        : 'bg-transparent py-6 text-white';
 
     return (
         <>
             <header
-                className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-dark/90 backdrop-blur-md py-4 shadow-lg text-white' : 'bg-transparent py-6 text-white'}`}
+                className={`fixed w-full z-50 transition-all duration-300 ${navClass}`}
                 style={{ top: isScrolled ? 0 : 'auto', position: isScrolled ? 'fixed' : 'absolute' }}
             >
                 <div className="container mx-auto px-6 flex justify-between items-center">
-                    <a href="#" className="font-display font-black text-2xl tracking-tighter">
-                        ONLYMEDIA<span className="text-primary">.</span>
-                    </a>
+                    <Link to="/" className="flex items-center">
+                        <img src="https://onlymedia.in/wp-content/uploads/2025/07/OM1Final-1.png" alt="OnlyMedia Logo" className="h-10 md:h-12 object-contain" />
+                    </Link>
 
                     {/* Desktop Nav */}
                     <nav className="hidden md:flex items-center gap-8">
                         {navLinks.map((link) => (
-                            <a
+                            <Link
                                 key={link.name}
-                                href={link.href}
+                                to={link.href}
                                 className="font-medium text-sm tracking-wide uppercase hover:text-primary transition-colors relative group"
                             >
                                 {link.name}
                                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
-                            </a>
+                            </Link>
                         ))}
-                        <button className="bg-primary hover:bg-white hover:text-dark text-white px-6 py-2.5 rounded-full font-medium transition-colors flex items-center gap-2">
+                        <Link to="/contact" className="bg-primary hover:bg-white hover:text-dark text-white px-6 py-2.5 rounded-full font-medium transition-colors flex items-center gap-2">
                             Get in Touch <ArrowRight size={16} />
-                        </button>
+                        </Link>
                     </nav>
 
                     {/* Mobile Toggle */}
@@ -62,13 +70,13 @@ export default function Navbar({ isScrolled }: NavbarProps) {
                     >
                         <nav className="flex flex-col items-center gap-8 text-2xl font-display font-bold w-full">
                             {navLinks.map((link) => (
-                                <a key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="border-b border-white/10 w-full text-center pb-4 hover:text-primary transition-colors">
+                                <Link key={link.name} to={link.href} onClick={() => setIsOpen(false)} className="border-b border-white/10 w-full text-center pb-4 hover:text-primary transition-colors">
                                     {link.name}
-                                </a>
+                                </Link>
                             ))}
-                            <button className="w-full bg-primary py-4 rounded-full mt-4 flex justify-center items-center gap-2">
+                            <Link to="/contact" onClick={() => setIsOpen(false)} className="w-full bg-primary py-4 rounded-full mt-4 flex justify-center items-center gap-2">
                                 Get in Touch <ArrowRight size={20} />
-                            </button>
+                            </Link>
                         </nav>
                     </motion.div>
                 )}
@@ -76,4 +84,3 @@ export default function Navbar({ isScrolled }: NavbarProps) {
         </>
     );
 }
-
